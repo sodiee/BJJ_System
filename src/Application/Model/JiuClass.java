@@ -9,8 +9,10 @@ public class JiuClass {
     private String topic;
     private Fighter fighter;
 
+    private Class typeOfClass;
 
-    public JiuClass(int number, int rating, String gym, Wear gear, String topic, Fighter fighter) {
+
+    public JiuClass(int number, int rating, String gym, Wear gear, String topic, Fighter fighter, Class typeOfClass) {
         this.number = number;
         totalNumber++;
         this.rating = rating;
@@ -18,7 +20,9 @@ public class JiuClass {
         this.gear = gear;
         this.topic = topic;
         this.fighter = fighter;
+        this.typeOfClass = typeOfClass;
     }
+
 
     public int getTotalNumber() {
         return totalNumber;

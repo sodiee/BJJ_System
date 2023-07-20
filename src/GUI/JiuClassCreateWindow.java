@@ -1,6 +1,7 @@
 package GUI;
 
 import Application.Controller.Controller;
+import Application.Model.Class;
 import Application.Model.Fighter;
 import Application.Model.Wear;
 import javafx.collections.FXCollections;
@@ -17,8 +18,8 @@ import javafx.stage.StageStyle;
 public class JiuClassCreateWindow extends Stage {
     private Controller controller;
     private ListView<Fighter> lvwFighters;
-    private Label lblNumber, lblRating, lblGym, lblGear, lblTopic, lblFighter;
-    private TextField txfNumber, txfRating, txfGym, txfGear, txfTopic;
+    private Label lblNumber, lblRating, lblGym, lblGear, lblTopic, lblFighter, lblClass, lblTotalHours;
+    private TextField txfNumber, txfRating, txfGym, txfGear, txfTopic, txfClass, txfTotalHours;
     private Button btnRegister, btnCancel;
     private ComboBox cBoxGear;
     private ObservableList<String> cBoxValues = FXCollections.observableArrayList("GI", "NOGI");
@@ -38,37 +39,38 @@ public class JiuClassCreateWindow extends Stage {
     private void initGUI(GridPane pane) {
         pane.setPadding(new Insets(10));
         pane.setHgap(10);
-        pane.setVgap(10);
+        pane.setVgap(5);
         pane.setGridLinesVisible(false);
 
-        lblNumber = new Label("Number: ");
+        lblNumber = new Label("Number:");
         pane.add(lblNumber, 0, 0);
         txfNumber = new TextField();
         pane.add(txfNumber, 0, 1);
 
-        lblRating = new Label("Rating: ");
+        lblRating = new Label("Rating:");
         pane.add(lblRating, 0, 2);
         txfRating = new TextField();
         pane.add(txfRating, 0, 3);
 
-        lblGym = new Label("Gym: ");
+        lblGym = new Label("Gym:");
         pane.add(lblGym, 0, 4);
         txfGym = new TextField();
         pane.add(txfGym, 0, 5);
 
-        lblGear = new Label("Gear: ");
+        lblGear = new Label("Gear:");
         pane.add(lblGear, 0, 6);
         cBoxGear = new ComboBox(cBoxValues);
         pane.add(cBoxGear, 0, 7);
 
 
-        lblTopic = new Label("Topic: ");
+        lblTopic = new Label("Topic:");
         pane.add(lblTopic, 0, 9);
         txfTopic = new TextField();
         pane.add(txfTopic, 0, 10);
 
-        lblFighter = new Label("Fighter: ");
+        lblFighter = new Label("Fighter:");
         pane.add(lblFighter, 0, 11);
+
         lvwFighters = new ListView<>();
         lvwFighters.getItems().setAll(controller.getFighters());
         pane.add(lvwFighters, 0, 12);
@@ -86,9 +88,9 @@ public class JiuClassCreateWindow extends Stage {
 
     private void registerAction() {
         if (cBoxGear.getSelectionModel().getSelectedItem() == "GI") {
-            controller.createJiuClass(Integer.parseInt(txfNumber.getText()), Integer.parseInt(txfRating.getText()), txfGym.getText(), Wear.GI, txfTopic.getText(), lvwFighters.getSelectionModel().getSelectedItem().getBelt(), lvwFighters.getSelectionModel().getSelectedItem());
+            controller.createJiuClass(Integer.parseInt(txfNumber.getText()), Integer.parseInt(txfRating.getText()), txfGym.getText(), Wear.GI, txfTopic.getText(), lvwFighters.getSelectionModel().getSelectedItem().getBelt(), lvwFighters.getSelectionModel().getSelectedItem(), Class.valueOf(txfClass.getText()));
         } else {
-            controller.createJiuClass(Integer.parseInt(txfNumber.getText()), Integer.parseInt(txfRating.getText()), txfGym.getText(), Wear.NOGI, txfTopic.getText(), lvwFighters.getSelectionModel().getSelectedItem().getBelt(), lvwFighters.getSelectionModel().getSelectedItem());
+            controller.createJiuClass(Integer.parseInt(txfNumber.getText()), Integer.parseInt(txfRating.getText()), txfGym.getText(), Wear.NOGI, txfTopic.getText(), lvwFighters.getSelectionModel().getSelectedItem().getBelt(), lvwFighters.getSelectionModel().getSelectedItem(), Class.valueOf(txfClass.getText()));
         }
         this.hide();
     }

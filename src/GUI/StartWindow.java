@@ -29,20 +29,25 @@ public class StartWindow extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(true);
-        stage.setHeight(700);
-        stage.setWidth(650);
+        //stage.setHeight(700);
+        //stage.setWidth(650);
 
     }
 
     private void initContent(BorderPane pane) {
         TrainingTab trainingTab = new TrainingTab();
+        InfoTab infoTab = new InfoTab();
 
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-        Tab tab = new Tab("Training", new Label("Training"));
+        Tab tabCreate = new Tab("Training", new Label("Training"));
+        Tab tabInfo = new Tab("Info", new Label("Info"));
 
-        //tab.setContent(trainingTab);
-        tabPane.getTabs().add(tab);
+        tabCreate.setContent(trainingTab);
+        tabPane.getTabs().add(tabCreate);
+
+        tabInfo.setContent(infoTab);
+        tabPane.getTabs().add(tabInfo);
 
         pane.setCenter(tabPane);
     }
