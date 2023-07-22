@@ -96,6 +96,9 @@ public class TrainingTab extends GridPane {
         Alert promoteAlert = new Alert(Alert.AlertType.INFORMATION);
         promoteAlert.setContentText("Promotion to new belt for " + lvwFighters.getSelectionModel().getSelectedItem() + " succeeded!");
         promoteAlert.showAndWait();
+        txfFightersNameActual.setText(lvwFighters.getSelectionModel().getSelectedItem().getName());
+        txfFightersAgeActual.setText(String.valueOf(lvwFighters.getSelectionModel().getSelectedItem().getAge()));
+        txfFighersBeltActualt.setText(String.valueOf(lvwFighters.getSelectionModel().getSelectedItem().getBelt()));
     }
 
     private void selectedClassChanged(JiuClass newValue) {

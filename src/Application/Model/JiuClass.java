@@ -11,6 +11,8 @@ public class JiuClass {
 
     private Class typeOfClass;
 
+    private double duration;
+
 
     public JiuClass(int number, int rating, String gym, Wear gear, String topic, Fighter fighter, Class typeOfClass) {
         this.number = number;
@@ -20,10 +22,19 @@ public class JiuClass {
         this.gear = gear;
         this.topic = topic;
         this.fighter = fighter;
+        fighter.addClass(this);
         this.typeOfClass = typeOfClass;
     }
 
 
+    public double getDuration() {
+        double tempDur = 1.0;
+        if (typeOfClass == Class.BJJ || typeOfClass == Class.NOGI) {
+            tempDur = 1.5;
+        }
+
+        return tempDur;
+    }
     public int getTotalNumber() {
         return totalNumber;
     }
@@ -48,6 +59,6 @@ public class JiuClass {
     }
 
     public String toString() {
-        return number + " / " + totalNumber + " " + fighter.belt;
+        return number + " / " + totalNumber + " " + fighter.getBelt();
     }
 }
